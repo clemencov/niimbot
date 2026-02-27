@@ -62,7 +62,7 @@ export function isConnected() {
   return state === "connected";
 }
 
-export async function print(canvas: HTMLCanvasElement, density: number) {
+export async function print(canvas: HTMLCanvasElement) {
   if (state !== "connected") return;
   setState("printing");
 
@@ -72,7 +72,7 @@ export async function print(canvas: HTMLCanvasElement, density: number) {
     const taskType = client.getPrintTaskType() ?? "D110";
     const printTask = client.abstraction.newPrintTask(taskType, {
       totalPages: 1,
-      density,
+      density: 2,
       labelType: LabelType.WithGaps,
     });
 

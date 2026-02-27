@@ -116,28 +116,6 @@ input[type="number"] {
   flex-wrap: wrap;
 }
 
-.align-group {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.25rem 0.5rem;
-  display: flex;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-}
-
-.align-group legend {
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0 0.25rem;
-}
-
-.align-group label {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.15rem;
-  font-weight: 400;
-}
-
 /* Buttons */
 button {
   padding: 0.5rem 1rem;

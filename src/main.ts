@@ -13,7 +13,6 @@ const inputFontSize = document.getElementById("input-font-size") as HTMLSelectEl
 const inputWidth = document.getElementById("input-width") as HTMLInputElement;
 const inputHeight = document.getElementById("input-height") as HTMLInputElement;
 const inputBold = document.getElementById("input-bold") as HTMLInputElement;
-const inputDensity = document.getElementById("input-density") as HTMLSelectElement;
 const btnPrint = document.getElementById("btn-print") as HTMLButtonElement;
 const printProgress = document.getElementById("print-progress")!;
 
@@ -21,14 +20,11 @@ const printProgress = document.getElementById("print-progress")!;
 let lastPrintCanvas: HTMLCanvasElement | null = null;
 
 function getConfig(): LabelConfig {
-  const alignRadio = document.querySelector<HTMLInputElement>(
-    'input[name="align"]:checked'
-  );
   return {
     text: inputText.value,
     fontSize: Number(inputFontSize.value),
     bold: inputBold.checked,
-    align: (alignRadio?.value as LabelConfig["align"]) ?? "left",
+    align: "center" as const,
     widthMm: Number(inputWidth.value),
     heightMm: Number(inputHeight.value),
   };
@@ -104,17 +100,12 @@ btnConnect.addEventListener("click", () => {
 
 btnPrint.addEventListener("click", () => {
   if (!lastPrintCanvas) return;
-  const density = Number(inputDensity.value);
-  printer.print(lastPrintCanvas, density);
+  printer.print(lastPrintCanvas);
 });
 
 // Live preview on any input change
 for (const el of [inputText, inputFontSize, inputWidth, inputHeight, inputBold]) {
   el.addEventListener("input", updatePreview);
-}
-
-for (const radio of document.querySelectorAll<HTMLInputElement>('input[name="align"]')) {
-  radio.addEventListener("change", updatePreview);
 }
 
 // Initial render

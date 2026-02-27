@@ -41,13 +41,8 @@
             </select>
           </label>
 
-          <label>
-            Label
-            <span class="size-inputs">
-              <input id="input-width" type="number" value="40" min="10" max="80" step="1" /> x
-              <input id="input-height" type="number" value="12" min="6" max="15" step="1" /> mm
-            </span>
-          </label>
+          <input id="input-width" type="hidden" value="40" />
+          <input id="input-height" type="hidden" value="12" />
         </div>
 
         <div class="row">
@@ -56,23 +51,6 @@
             Bold
           </label>
 
-          <fieldset class="align-group">
-            <legend>Align</legend>
-            <label><input type="radio" name="align" value="left" checked /> L</label>
-            <label><input type="radio" name="align" value="center" /> C</label>
-            <label><input type="radio" name="align" value="right" /> R</label>
-          </fieldset>
-
-          <label>
-            Density
-            <select id="input-density">
-              <option value="1">1</option>
-              <option value="2" selected>2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </label>
         </div>
 
         <button id="btn-print" disabled>Print</button>
