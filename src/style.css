@@ -165,29 +165,44 @@ button:hover {
   color: #222;
 }
 
-#btn-connect.connected {
-  border-color: #d88;
-  color: #c44;
+#btn-connect {
+  background: #222;
+  color: #eee;
+  border-color: #222;
 }
 
-#btn-connect.connected:hover {
+#btn-connect:hover {
+  background: #333;
+  border-color: #333;
+}
+
+#btn-connect.connected {
+  background: #c44;
+  color: #fff;
   border-color: #c44;
 }
 
+#btn-connect.connected:hover {
+  background: #a33;
+  border-color: #a33;
+}
+
 #btn-print {
-  border-color: #8c8;
-  color: #2a8a2a;
+  background: #2a8a2a;
+  color: #fff;
+  border-color: #2a8a2a;
   margin-top: 0.25rem;
 }
 
 #btn-print:hover:not(:disabled) {
-  border-color: #2a8a2a;
-  color: #1a6a1a;
+  background: #1a6a1a;
+  border-color: #1a6a1a;
 }
 
 #btn-print:disabled {
+  background: #e8e8e8;
   border-color: #e8e8e8;
-  color: #ccc;
+  color: #bbb;
   cursor: not-allowed;
 }
 
