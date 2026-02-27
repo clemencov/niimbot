@@ -22,10 +22,10 @@ body {
 }
 
 #page-title {
-  font-size: 0.85rem;
-  font-weight: 400;
+  font-size: 1.4rem;
+  font-weight: 700;
   text-align: center;
-  color: #aaa;
+  color: #222;
   letter-spacing: 0.3em;
   text-transform: uppercase;
 }
@@ -187,11 +187,20 @@ button:hover {
   border-color: #a33;
 }
 
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.actions button {
+  flex: 1;
+}
+
 #btn-print {
   background: #2a8a2a;
   color: #fff;
   border-color: #2a8a2a;
-  margin-top: 0.25rem;
 }
 
 #btn-print:hover:not(:disabled) {

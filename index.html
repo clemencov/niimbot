@@ -13,7 +13,6 @@
     <div class="app">
       <h1 id="page-title">NIIMBOT D110</h1>
       <header>
-        <button id="btn-connect">Connect</button>
         <span id="status">Disconnected</span>
         <span id="battery"></span>
       </header>
@@ -61,7 +60,10 @@
 
         </div>
 
-        <button id="btn-print" disabled>Print</button>
+        <div class="actions">
+          <button id="btn-connect">Connect</button>
+          <button id="btn-print" disabled>Print</button>
+        </div>
         <div id="print-progress"></div>
       </section>
     </div>
