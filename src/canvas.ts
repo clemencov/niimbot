@@ -48,9 +48,9 @@ export function renderLabel(
   // Text styling
   const weight = config.bold ? "bold" : "normal";
   const fontSizePx = ptToPx(config.fontSize);
-  ctx.font = `${weight} ${fontSizePx}px sans-serif`;
+  ctx.font = `${weight} ${fontSizePx}px Roboto, sans-serif`;
   ctx.fillStyle = "#000";
-  ctx.textBaseline = "top";
+  ctx.textBaseline = "alphabetic";
 
   const align = config.align;
   ctx.textAlign = align;
@@ -63,13 +63,18 @@ export function renderLabel(
   else if (align === "right") x = w - padding;
   else x = w / 2;
 
+  // Measure actual glyph dimensions for precise visual centering
+  const capHeight = ctx.measureText("H").actualBoundingBoxAscent;
+  const descent = ctx.measureText("g").actualBoundingBoxDescent;
+  const lineHeight = (capHeight + descent) * 1.3;
+
   // Word-wrap and render lines
   const lines = wrapText(ctx, config.text, maxWidth);
-  const lineHeight = fontSizePx * 1.2;
-  let y = padding;
+  const totalTextHeight = (lines.length - 1) * lineHeight + capHeight;
+  let y = Math.max(padding, (h - totalTextHeight) / 2) + capHeight;
 
   for (const line of lines) {
-    if (y + lineHeight > h) break;
+    if (y + descent > h) break;
     ctx.fillText(line, x, y, maxWidth);
     y += lineHeight;
   }
