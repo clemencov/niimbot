@@ -57,7 +57,6 @@ export function renderLabel(
 
   const padding = Math.round(w * 0.04);
   let x: number;
-  const maxWidth = w - padding * 2;
 
   if (align === "left") x = padding;
   else if (align === "right") x = w - padding;
@@ -68,14 +67,13 @@ export function renderLabel(
   const descent = ctx.measureText("g").actualBoundingBoxDescent;
   const lineHeight = (capHeight + descent) * 1.3;
 
-  // Word-wrap and render lines
-  const lines = wrapText(ctx, config.text, maxWidth);
+  // Split on explicit newlines only — no word-wrap
+  const lines = config.text.split("\n");
   const totalTextHeight = (lines.length - 1) * lineHeight + capHeight;
   let y = Math.max(padding, (h - totalTextHeight) / 2) + capHeight;
 
   for (const line of lines) {
-    if (y + descent > h) break;
-    ctx.fillText(line, x, y, maxWidth);
+    ctx.fillText(line, x, y);
     y += lineHeight;
   }
 
@@ -83,37 +81,6 @@ export function renderLabel(
   updatePreview(offscreen, previewCanvas);
 
   return offscreen;
-}
-
-function wrapText(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  maxWidth: number
-): string[] {
-  const paragraphs = text.split("\n");
-  const lines: string[] = [];
-
-  for (const para of paragraphs) {
-    if (para === "") {
-      lines.push("");
-      continue;
-    }
-    const words = para.split(/\s+/);
-    let current = "";
-
-    for (const word of words) {
-      const test = current ? `${current} ${word}` : word;
-      if (ctx.measureText(test).width > maxWidth && current) {
-        lines.push(current);
-        current = word;
-      } else {
-        current = test;
-      }
-    }
-    if (current) lines.push(current);
-  }
-
-  return lines;
 }
 
 function updatePreview(

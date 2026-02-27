@@ -88,8 +88,16 @@ header {
 }
 
 .template-btn {
-  padding: 0.2rem 0.5rem;
+  padding: 0.35rem 0.7rem;
   font-size: 0.75rem;
+  background: #666;
+  border-color: #666;
+  color: #fff;
+}
+
+.template-btn:hover {
+  background: #777;
+  border-color: #777;
 }
 
 /* Controls */
