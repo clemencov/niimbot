@@ -6,11 +6,12 @@
     <title>Niimbot D110 Label Printer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <div class="app">
+      <h1 id="page-title">NIIMBOT D110</h1>
       <header>
         <button id="btn-connect">Connect</button>
         <span id="status">Disconnected</span>
@@ -19,6 +20,13 @@
 
       <section class="preview">
         <canvas id="label-preview"></canvas>
+      </section>
+
+      <section class="templates">
+        <span class="templates-label">Templates</span>
+        <div class="templates-list">
+          <button class="template-btn" data-template="date">Date</button>
+        </div>
       </section>
 
       <section class="controls">

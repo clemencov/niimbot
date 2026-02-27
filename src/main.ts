@@ -4,6 +4,7 @@ import type { PrinterState } from "./printer";
 import "./style.css";
 
 // --- DOM elements ---
+const pageTitle = document.getElementById("page-title")!;
 const btnConnect = document.getElementById("btn-connect") as HTMLButtonElement;
 const statusEl = document.getElementById("status")!;
 const batteryEl = document.getElementById("battery")!;
@@ -46,6 +47,7 @@ function onStateChange(state: PrinterState) {
       btnPrint.disabled = true;
       batteryEl.textContent = "";
       printProgress.textContent = "";
+      pageTitle.textContent = "NIIMBOT D110";
       break;
     case "connecting":
       statusEl.textContent = "Connecting…";
@@ -70,6 +72,8 @@ function onStateChange(state: PrinterState) {
 printer.init({
   onStateChange,
   onPrinterInfo(info) {
+    const name = printer.getDeviceName();
+    if (name) pageTitle.textContent = name;
     const parts: string[] = [];
     if (info.serial) parts.push(`S/N: ${info.serial}`);
     if (info.softwareVersion) parts.push(`FW: ${info.softwareVersion}`);
@@ -102,6 +106,21 @@ btnPrint.addEventListener("click", () => {
   if (!lastPrintCanvas) return;
   printer.print(lastPrintCanvas);
 });
+
+// --- Templates ---
+const templates: Record<string, () => string> = {
+  date: () => new Date().toISOString().slice(0, 10),
+};
+
+for (const btn of document.querySelectorAll<HTMLButtonElement>(".template-btn")) {
+  btn.addEventListener("click", () => {
+    const fn = templates[btn.dataset.template!];
+    if (fn) {
+      inputText.value = fn();
+      updatePreview();
+    }
+  });
+}
 
 // Live preview on any input change
 for (const el of [inputText, inputFontSize, inputWidth, inputHeight, inputBold]) {

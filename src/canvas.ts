@@ -48,7 +48,7 @@ export function renderLabel(
   // Text styling
   const weight = config.bold ? "bold" : "normal";
   const fontSizePx = ptToPx(config.fontSize);
-  ctx.font = `${weight} ${fontSizePx}px Roboto, sans-serif`;
+  ctx.font = `${weight} ${fontSizePx}px JetBrains Mono, monospace`;
   ctx.fillStyle = "#000";
   ctx.textBaseline = "alphabetic";
 

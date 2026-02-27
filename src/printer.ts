@@ -21,6 +21,7 @@ export interface PrinterCallbacks {
 
 const client = new NiimbotBluetoothClient();
 let state: PrinterState = "disconnected";
+let deviceName: string | null = null;
 let callbacks: PrinterCallbacks;
 
 function setState(s: PrinterState) {
@@ -44,7 +45,8 @@ export async function connect() {
   if (state !== "disconnected") return;
   setState("connecting");
   try {
-    await client.connect();
+    const info = await client.connect();
+    deviceName = info.deviceName ?? null;
     setState("connected");
   } catch (err) {
     setState("disconnected");
@@ -60,6 +62,10 @@ export async function disconnect() {
 
 export function isConnected() {
   return state === "connected";
+}
+
+export function getDeviceName() {
+  return deviceName;
 }
 
 export async function print(canvas: HTMLCanvasElement) {
