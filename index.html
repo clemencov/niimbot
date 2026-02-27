@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Niimbot D110 Label Printer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <button id="btn-connect">Connect</button>
+        <span id="status">Disconnected</span>
+        <span id="battery"></span>
+      </header>
+
+      <section class="preview">
+        <canvas id="label-preview"></canvas>
+      </section>
+
+      <section class="controls">
+        <label>
+          Text
+          <textarea id="input-text" rows="2" placeholder="Label text…">Hello!</textarea>
+        </label>
+
+        <div class="row">
+          <label>
+            Font size
+            <select id="input-font-size">
+              <option value="8">8pt</option>
+              <option value="10">10pt</option>
+              <option value="12">12pt</option>
+              <option value="14" selected>14pt</option>
+              <option value="18">18pt</option>
+              <option value="24">24pt</option>
+              <option value="32">32pt</option>
+            </select>
+          </label>
+
+          <label>
+            Label
+            <span class="size-inputs">
+              <input id="input-width" type="number" value="40" min="10" max="80" step="1" /> x
+              <input id="input-height" type="number" value="12" min="6" max="15" step="1" /> mm
+            </span>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="inline">
+            <input id="input-bold" type="checkbox" />
+            Bold
+          </label>
+
+          <fieldset class="align-group">
+            <legend>Align</legend>
+            <label><input type="radio" name="align" value="left" checked /> L</label>
+            <label><input type="radio" name="align" value="center" /> C</label>
+            <label><input type="radio" name="align" value="right" /> R</label>
+          </fieldset>
+
+          <label>
+            Density
+            <select id="input-density">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="btn-print" disabled>Print</button>
+        <div id="print-progress"></div>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
